@@ -315,7 +315,7 @@ void __delayacct_irq(struct task_struct *task, u32 delta)
 	raw_spin_lock_irqsave(&task->delays->lock, flags);
 	task->delays->irq_delay += delta;
 	task->delays->irq_count++;
-	if (delta > task->delays->irq_delay_max)
+	if(delta > task->delays->irq_delay_max)
 		task->delays->irq_delay_max = delta;
 	if (delta && (!task->delays->irq_delay_min || delta < task->delays->irq_delay_min))
 		task->delays->irq_delay_min = delta;
